@@ -1,0 +1,23 @@
+﻿.categoryPhoto { width:200px; height:250px;
+                 border:double 5px red;
+                 float:left;
+                 padding:10px;
+                 background-color:#ebebeb;
+                 margin:5px;
+}
+
+.categoryPhoto:hover{ background-color:black;
+                      opacity:.5;
+}
+
+.categoryname { width:200px; height:20px; 
+                text-align:center;
+                font-size:10pt;font-weight:bold;
+                color:red;
+
+}
+
+.categoryname:hover{ color:green;}
+
+
+

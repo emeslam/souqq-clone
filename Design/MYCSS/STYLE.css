@@ -1,0 +1,16 @@
+﻿.catphoto{ width:200px; height:230px;
+           border:solid 10px black;
+           background-color:white;
+           padding:5px;
+
+}
+    .catphoto:hover {
+         border:double 10px red;
+         opacity:.5
+    }
+
+.lblcat{ color:black; font-family:Arial; font-size:15pt;
+         font-weight:bold;
+}
+
+.lblcat:hover{ color:red;}

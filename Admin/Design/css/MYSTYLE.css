@@ -1,0 +1,19 @@
+﻿.txtbox{ width:200px; height:30px; background-color:#e4e4e4;
+         border:solid 1px #808080;
+         text-align:left; color:black;
+}
+
+    .txtbox:hover {
+        background-color:black;
+        color:white;
+        border-radius:20px;
+        border:double 1px red;
+    }
+
+.btn { background-color:black;
+       color:white;
+       text-align:center; font-size:20pt;
+
+}
+
+.btn:hover{ background-color:#ff6a00}

@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SouqNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cards">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardNum" Type="int" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expiredate" Type="datetime" />
+          <Property Name="CardOwner" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CatName" Type="nvarchar(max)" />
+          <Property Name="CatDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CategoryBYINT">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatName" Type="nvarchar(max)" />
+          <Property Name="CatDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question" Type="nvarchar" MaxLength="50" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="WritingDate" Type="datetime" />
+          <Property Name="qty" Type="int" />
+          <Property Name="TotalCost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shipeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="shipCIty" Type="nvarchar" MaxLength="50" />
+          <Property Name="shipAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="MemberID" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProName" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QTY" Type="int" />
+          <Property Name="WritingDate" Type="datetime" />
+          <Property Name="CatId" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Function Name="AddNewCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="catname" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="catDescription" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddnewCategoryINt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="catname" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="desc" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddNewOreders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderid" Type="int" Mode="In" />
+          <Parameter Name="proid" Type="int" Mode="In" />
+          <Parameter Name="qty" Type="decimal" Mode="In" />
+          <Parameter Name="totalCost" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="AddNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="proId" Type="int" Mode="In" />
+          <Parameter Name="proname" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="price" Type="decimal" Mode="In" />
+          <Parameter Name="qty" Type="int" Mode="In" />
+          <Parameter Name="catID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="fullname" Type="nvarchar" Mode="In" />
+          <Parameter Name="pass" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="company" Type="nvarchar" Mode="In" />
+          <Parameter Name="gender" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthdate" Type="datetime" Mode="In" />
+          <Parameter Name="q" Type="nvarchar" Mode="In" />
+          <Parameter Name="answer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Deliverydata" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="shipname" Type="nvarchar" Mode="In" />
+          <Parameter Name="shipcity" Type="nvarchar" Mode="In" />
+          <Parameter Name="shipaddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="memberId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="newCard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardnum" Type="int" Mode="In" />
+          <Parameter Name="cardType" Type="nvarchar" Mode="In" />
+          <Parameter Name="expire" Type="datetime" Mode="In" />
+          <Parameter Name="cardowner" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SelectAllCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SouqNewModelStoreContainer">
+          <EntitySet Name="Cards" EntityType="Self.Cards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryBYINT" EntityType="Self.CategoryBYINT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SouqNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cards">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardNum" Type="Int32" />
+          <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expiredate" Type="DateTime" Precision="3" />
+          <Property Name="CardOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CatDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="WritingDate" Type="DateTime" Precision="3" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="TotalCost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shipCIty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shipAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MemberID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QTY" Type="Int32" />
+          <Property Name="WritingDate" Type="DateTime" Precision="3" />
+          <Property Name="CatId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SouqNewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cards" EntityType="Self.Cards" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Member" EntityType="Self.Member" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <FunctionImport Name="AddNewCategory">
+            <Parameter Name="catname" Mode="In" Type="String" />
+            <Parameter Name="catDescription" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddNewOreders">
+            <Parameter Name="orderid" Mode="In" Type="Int32" />
+            <Parameter Name="proid" Mode="In" Type="Int32" />
+            <Parameter Name="qty" Mode="In" Type="Decimal" />
+            <Parameter Name="totalCost" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="AddNewProduct">
+            <Parameter Name="proId" Mode="In" Type="Int32" />
+            <Parameter Name="proname" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="qty" Mode="In" Type="Int32" />
+            <Parameter Name="catID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddNewUser">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="fullname" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="company" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="birthdate" Mode="In" Type="DateTime" />
+            <Parameter Name="q" Mode="In" Type="String" />
+            <Parameter Name="answer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Deliverydata">
+            <Parameter Name="shipname" Mode="In" Type="String" />
+            <Parameter Name="shipcity" Mode="In" Type="String" />
+            <Parameter Name="shipaddress" Mode="In" Type="String" />
+            <Parameter Name="memberId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LoginUser" ReturnType="Collection(SouqNewModel.LoginUser_Result)">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="newCard">
+            <Parameter Name="cardnum" Mode="In" Type="Int32" />
+            <Parameter Name="cardType" Mode="In" Type="String" />
+            <Parameter Name="expire" Mode="In" Type="DateTime" />
+            <Parameter Name="cardowner" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectAllCategory" ReturnType="Collection(String)" />
+          <FunctionImport Name="SelectAllProducts" ReturnType="Collection(SouqNewModel.SelectAllProducts_Result)" />
+          <EntitySet Name="CategoryBYINT" EntityType="SouqNewModel.CategoryBYINT" />
+          <FunctionImport Name="AddnewCategoryINt">
+            <Parameter Name="catname" Mode="In" Type="String" />
+            <Parameter Name="desc" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="LoginUser_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectAllProducts_Result">
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProName" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="QTY" Nullable="true" />
+          <Property Type="DateTime" Name="WritingDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CatId" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="CategoryBYINT">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CatDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SouqNewModelStoreContainer" CdmEntityContainer="SouqNewEntities">
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="SouqNewModel.Cards">
+              <MappingFragment StoreEntitySet="Cards">
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="CardNum" ColumnName="CardNum" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="Expiredate" ColumnName="Expiredate" />
+                <ScalarProperty Name="CardOwner" ColumnName="CardOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="SouqNewModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CatDescription" ColumnName="CatDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="SouqNewModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="SouqNewModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="WritingDate" ColumnName="WritingDate" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SouqNewModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="shipeName" ColumnName="shipeName" />
+                <ScalarProperty Name="shipCIty" ColumnName="shipCIty" />
+                <ScalarProperty Name="shipAddress" ColumnName="shipAddress" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SouqNewModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="WritingDate" ColumnName="WritingDate" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddNewCategory" FunctionName="SouqNewModel.Store.AddNewCategory" />
+          <FunctionImportMapping FunctionImportName="AddNewOreders" FunctionName="SouqNewModel.Store.AddNewOreders" />
+          <FunctionImportMapping FunctionImportName="AddNewProduct" FunctionName="SouqNewModel.Store.AddNewProduct" />
+          <FunctionImportMapping FunctionImportName="AddNewUser" FunctionName="SouqNewModel.Store.AddNewUser" />
+          <FunctionImportMapping FunctionImportName="Deliverydata" FunctionName="SouqNewModel.Store.Deliverydata" />
+          <FunctionImportMapping FunctionImportName="LoginUser" FunctionName="SouqNewModel.Store.LoginUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SouqNewModel.LoginUser_Result">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="newCard" FunctionName="SouqNewModel.Store.newCard" />
+          <FunctionImportMapping FunctionImportName="SelectAllCategory" FunctionName="SouqNewModel.Store.SelectAllCategory" />
+          <FunctionImportMapping FunctionImportName="SelectAllProducts" FunctionName="SouqNewModel.Store.SelectAllProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SouqNewModel.SelectAllProducts_Result">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="WritingDate" ColumnName="WritingDate" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CategoryBYINT">
+            <EntityTypeMapping TypeName="SouqNewModel.CategoryBYINT">
+              <MappingFragment StoreEntitySet="CategoryBYINT">
+                <ScalarProperty Name="CatDescription" ColumnName="CatDescription" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddnewCategoryINt" FunctionName="SouqNewModel.Store.AddnewCategoryINt" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

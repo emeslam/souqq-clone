@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddNewProducts.ascx.cs" Inherits="UC_Products_AddNewProducts" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="UC_Member_Login" %>
 <p style="direction: ltr">
     Email :
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>

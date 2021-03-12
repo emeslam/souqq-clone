@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SouqNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SouqNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cards">
           <Key>
             <PropertyRef Name="CardID" />
@@ -22,14 +22,6 @@
           <Property Name="CatId" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CatName" Type="nvarchar(max)" />
           <Property Name="CatDescription" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="CategoryBYINT">
-          <Key>
-            <PropertyRef Name="CatId" />
-          </Key>
-          <Property Name="CatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CatName" Type="nvarchar(max)" />
-          <Property Name="CatDescription" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -84,10 +76,6 @@
           <Parameter Name="catname" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="catDescription" Type="nvarchar(max)" Mode="In" />
         </Function>
-        <Function Name="AddnewCategoryINt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="catname" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="desc" Type="nvarchar(max)" Mode="In" />
-        </Function>
         <Function Name="AddNewOreders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="orderid" Type="int" Mode="In" />
           <Parameter Name="proid" Type="int" Mode="In" />
@@ -134,13 +122,13 @@
         <EntityContainer Name="SouqNewModelStoreContainer">
           <EntitySet Name="Cards" EntityType="Self.Cards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CategoryBYINT" EntityType="Self.CategoryBYINT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SouqNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -265,11 +253,6 @@
           </FunctionImport>
           <FunctionImport Name="SelectAllCategory" ReturnType="Collection(String)" />
           <FunctionImport Name="SelectAllProducts" ReturnType="Collection(SouqNewModel.SelectAllProducts_Result)" />
-          <EntitySet Name="CategoryBYINT" EntityType="SouqNewModel.CategoryBYINT" />
-          <FunctionImport Name="AddnewCategoryINt">
-            <Parameter Name="catname" Mode="In" Type="String" />
-            <Parameter Name="desc" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LoginUser_Result">
           <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
@@ -283,14 +266,6 @@
           <Property Type="DateTime" Name="WritingDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="CatId" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <EntityType Name="CategoryBYINT">
-          <Key>
-            <PropertyRef Name="CatId" />
-          </Key>
-          <Property Name="CatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CatDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -396,16 +371,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="CategoryBYINT">
-            <EntityTypeMapping TypeName="SouqNewModel.CategoryBYINT">
-              <MappingFragment StoreEntitySet="CategoryBYINT">
-                <ScalarProperty Name="CatDescription" ColumnName="CatDescription" />
-                <ScalarProperty Name="CatName" ColumnName="CatName" />
-                <ScalarProperty Name="CatId" ColumnName="CatId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AddnewCategoryINt" FunctionName="SouqNewModel.Store.AddnewCategoryINt" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

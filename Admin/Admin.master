@@ -24,10 +24,11 @@
     <link href="Design/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="Design/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -48,8 +49,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Design/index.html">Em Admin</a>
+                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
             </div>
+
+            <!-------form------->
+            <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
@@ -277,11 +289,18 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="AddNewCategoryEncrpt.aspx"><i class="fa fa-dashboard fa-fw"></i> Add new Category</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="AddProducts.aspx"><i class="fa fa-bar-chart-o fa-fw"></i> Add new Products</a>
-                           
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
@@ -294,19 +313,19 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="Design/panels-wells.html">Panels and Wells</a>
+                                    <a href="panels-wells.html">Panels and Wells</a>
                                 </li>
                                 <li>
-                                    <a href="Design/buttons.html">Buttons</a>
+                                    <a href="buttons.html">Buttons</a>
                                 </li>
                                 <li>
-                                    <a href="Design/notifications.html">Notifications</a>
+                                    <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="Design/typography.html">Typography</a>
+                                    <a href="typography.html">Typography</a>
                                 </li>
                                 <li>
-                                    <a href="Design/grid.html">Grid</a>
+                                    <a href="grid.html">Grid</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -345,10 +364,10 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="active" href="Design/blank.html">Blank Page</a>
+                                    <a class="active" href="blank.html">Blank Page</a>
                                 </li>
                                 <li>
-                                    <a href="Design/login.html">Login Page</a>
+                                    <a href="login.html">Login Page</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -365,16 +384,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                     
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
-    </form>
-
-
+                        <h1 class="page-header">Blank</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -403,5 +413,4 @@
 
 </html>
 
-
-
+    

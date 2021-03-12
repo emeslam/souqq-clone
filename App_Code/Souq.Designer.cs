@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Vs\Cours project\30-7-2017\Final Project\App_Code\SOUQ.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Vs\WebSite1\suoq2\App_Code\Souq.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

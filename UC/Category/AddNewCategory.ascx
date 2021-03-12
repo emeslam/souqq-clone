@@ -1,8 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddNewCategory.ascx.cs" Inherits="UC_Category_AddNewCategory" %>
-
-
-<link href="../../ADMIN/Design/css/MYSTYLE.css" rel="stylesheet" />
-
+<link href="../../Admin/Design/css/MYSTYLE.css" rel="stylesheet" />
 <br />
 <asp:Label ID="Label1" runat="server" Text="Add Category Name"></asp:Label>
 <asp:TextBox ID="txtCategory" runat="server" CssClass="txtbox"></asp:TextBox>
@@ -13,7 +10,8 @@
 <asp:Image ID="IMGDESC" runat="server" ImageUrl="~/ADMIN/Design/Image/NullICOn.png" Visible="False" />
 <br />
 <br />
-Category photo :&nbsp; <asp:FileUpload ID="FileUpload1" runat="server" />
+Category photo :&nbsp;
+<asp:FileUpload ID="FileUpload1" runat="server" />
 <asp:Image ID="Image1" runat="server" Height="107px" Width="93px" />
 <asp:Label ID="lblPhoto" runat="server" Text="Label" Visible="False"></asp:Label>
 <br />
